@@ -38,7 +38,7 @@ jobs:
           name: FoxPad-linux
           path: FoxPad-x86_64.AppImage
 
-    windows:
+  windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
