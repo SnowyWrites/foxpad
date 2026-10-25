@@ -1,0 +1,16 @@
+[package]
+name = "foxpad"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+chrono = "0.4"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+fltk = { version = "1.4", features = ["use-wayland"] }
+
+[target.'cfg(not(target_os = "linux"))'.dependencies]
+fltk = "1.4"
+
+[profile.release]
+strip = true
