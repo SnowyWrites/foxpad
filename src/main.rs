@@ -232,6 +232,13 @@ fn confirm_discard(
 fn main() {
     #[cfg(target_os = "linux")]
     install_desktop_entry();
+    #[cfg(target_os = "linux")]
+    {
+        // FLTK's Wayland clipboard doesn't reach other apps yet; XWayland does
+        if std::env::var_os("FLTK_BACKEND").is_none() {
+            unsafe { std::env::set_var("FLTK_BACKEND", "x11"); }
+        }
+    }
     let app = app::App::default().with_scheme(app::Scheme::Gtk);
     app::set_fonts("*");
     app::set_visual(Mode::Double).ok();
